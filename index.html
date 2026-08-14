@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The $1K/Month Pinterest Affiliate System — GrowthVault</title>
+<style>
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+:root{
+  --navy:#0a0e27;
+  --navy-2:#131a3a;
+  --blue:#1e3a8a;
+  --violet:#7c3aed;
+  --purple:#8b5cf6;
+  --magenta:#d946ef;
+  --cyan:#22d3ee;
+  --white:#ffffff;
+  --offwhite:#f8f7fc;
+  --gray:#6b7280;
+  --gray-light:#e6e4f0;
+  --ink:#1f2340;
+  --success:#10b981;
+  --warning:#f59e0b;
+  --danger:#ef4444;
+  --radius:18px;
+  --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --shadow: 0 20px 60px rgba(10,14,39,.15);
+}
+
+/* =========================================================
+   GLOBAL STYLES
+========================================================= */
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font);
+  background:linear-gradient(180deg,#eef0fb 0%,#e7e9f8 100%);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  padding-top:64px;
+}
+h1,h2,h3,h4{margin:0; font-family:var(--font); color:var(--navy);}
+p{margin:0;}
+ul,ol{margin:0; padding:0;}
+a{color:inherit;}
+button{font-family:var(--font); cursor:pointer;}
+input,textarea,select{font-family:var(--font);}
+::selection{background:var(--magenta); color:#fff;}
+
+.kicker{
+  text-transform:uppercase; letter-spacing:.14em; font-size:11.5px; font-weight:800;
+  color:var(--violet); display:flex; align-items:center; gap:8px;
+}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--magenta),var(--cyan));}
+.page-title{font-size:30px; font-weight:800; line-height:1.15; margin:.25em 0 .3em; letter-spacing:-.01em;}
+.page-subtitle{font-size:14.5px; color:var(--gray); margin-bottom:14px; line-height:1.6;}
+.lead{font-size:13.6px; color:#454a63; line-height:1.68;}
+.small-note{font-size:11.5px; color:var(--gray);}
+.section-heading{font-size:16.5px; font-weight:800; color:var(--navy); margin:16px 0 8px; display:flex; align-items:center; gap:8px;}
+.section-heading svg{width:18px;height:18px; color:var(--violet); flex:none;}
+
+/* =========================================================
+   PAGE / SHEET STYLES
+========================================================= */
+.ebook-page{
+  width:8in;
+  min-height:10in;
+  margin:34px auto;
+  background:var(--white);
+  position:relative;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  padding:0.55in 0.62in 0.75in;
+  display:flex;
+  flex-direction:column;
+  border-radius:6px;
+}
+.page-number{
+  position:absolute; bottom:0.28in; right:0.62in; font-size:10.5px; color:#a3a8c0; font-weight:600;
+}
+.page-number-left{
+  position:absolute; bottom:0.28in; left:0.62in; font-size:10.5px; color:#a3a8c0; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+}
+.page-footer-line{position:absolute; bottom:0.52in; left:0.62in; right:0.62in; height:1px; background:var(--gray-light);}
+
+/* =========================================================
+   COVER PAGE
+========================================================= */
+#page-1{
+  padding:0; background:var(--navy);
+}
+.cover-wrap{
+  position:relative; width:100%; height:100%; min-height:10in;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(124,58,237,.55), transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(34,211,238,.35), transparent 40%),
+    radial-gradient(circle at 75% 90%, rgba(217,70,239,.45), transparent 45%),
+    linear-gradient(160deg,#0a0e27 0%, #131a3a 45%, #1a1240 100%);
+  color:#fff;
+  display:flex; flex-direction:column; justify-content:space-between;
+  padding:0.6in;
+  overflow:hidden;
+}
+.cover-glow{position:absolute; border-radius:50%; filter:blur(60px); opacity:.55; pointer-events:none;}
+.cover-top{display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:2;}
+.brand-tag{display:flex; align-items:center; gap:8px; font-weight:700; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#d7d3ff;}
+.brand-mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--magenta),var(--cyan)); display:flex; align-items:center; justify-content:center;}
+.brand-mark svg{width:15px;height:15px; color:#0a0e27;}
+.cover-pill{border:1px solid rgba(255,255,255,.25); padding:6px 14px; border-radius:999px; font-size:11px; letter-spacing:.08em; color:#cfd0f8; text-transform:uppercase; font-weight:700; backdrop-filter:blur(4px);}
+.cover-center{position:relative; z-index:2; margin-top:10px;}
+.cover-title{
+  font-size:44px; font-weight:800; line-height:1.08; letter-spacing:-0.02em;
+  background:linear-gradient(90deg,#ffffff, #e6e1ff 55%, #b9e9ff);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  max-width:6.6in;
+}
+.cover-title .accent{
+  background:linear-gradient(90deg,var(--magenta),var(--cyan));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.cover-subtitle{margin-top:16px; font-size:16px; color:#c9caee; max-width:5.4in; line-height:1.6; font-weight:500;}
+.cover-badges{display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;}
+.cover-badge{font-size:11px; font-weight:700; color:#0a0e27; background:linear-gradient(135deg,#f4f1ff,#dff8ff); padding:7px 12px; border-radius:999px;}
+.cover-illustration{position:relative; z-index:2; margin-top:26px; display:flex; align-items:flex-end; gap:14px;}
+.cover-bottom{position:relative; z-index:2; display:flex; justify-content:space-between; align-items:flex-end;}
+.cover-author{font-size:13px; color:#d7d3ff;}
+.cover-author b{color:#fff; font-size:15px; display:block;}
+.cover-disclaimer{font-size:10px; color:#9694c9; max-width:3.2in; line-height:1.5;}
+
+/* mini pin cards used on cover + throughout */
+.pin-card{
+  width:118px; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 12px 24px rgba(0,0,0,.25);
+  transform:translateY(0);
+}
+.pin-card .thumb{height:80px; display:flex; align-items:center; justify-content:center;}
+.pin-card .meta{padding:8px 9px;}
+.pin-card .meta .t{font-size:9px; font-weight:800; color:#20233f;}
+.pin-card .meta .s{font-size:7.5px; color:#8a8fae; margin-top:3px;}
+.pin-card .save-btn{position:absolute; margin:6px; background:#e11d48; color:#fff; font-size:7px; font-weight:800; padding:4px 7px; border-radius:999px;}
+
+/* growth bars for cover chart */
+.mini-bars{display:flex; align-items:flex-end; gap:6px; height:70px;}
+.mini-bars i{display:block; width:9px; border-radius:4px 4px 0 0; background:linear-gradient(180deg,var(--cyan),var(--violet));}
+
+/* =========================================================
+   TABLE OF CONTENTS
+========================================================= */
+.toc-list{list-style:none; display:flex; flex-direction:column; gap:10px; margin-top:10px;}
+.toc-item{
+  display:flex; align-items:center; gap:14px; padding:12px 14px; border-radius:14px; border:1px solid var(--gray-light);
+  background:var(--offwhite); text-decoration:none; transition:.2s;
+}
+.toc-item:hover{border-color:var(--violet); transform:translateX(3px); background:#f2edff;}
+.toc-num{
+  width:34px; height:34px; border-radius:10px; flex:none; display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:14px; color:#fff; background:linear-gradient(135deg,var(--violet),var(--magenta));
+}
+.toc-info{flex:1;}
+.toc-info .t{font-weight:700; font-size:13.5px; color:var(--navy);}
+.toc-info .p{font-size:11px; color:var(--gray); margin-top:2px;}
+.toc-page{font-size:12px; font-weight:800; color:var(--violet);}
+
+/* =========================================================
+   COMPONENTS: cards / grids / callouts
+========================================================= */
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
+.card{
+  background:var(--offwhite); border:1px solid var(--gray-light); border-radius:14px; padding:12px 14px;
+}
+.card-title{font-size:12.5px; font-weight:800; color:var(--navy); display:flex; align-items:center; gap:7px; margin-bottom:5px;}
+.card-title svg{width:15px;height:15px; color:var(--violet);}
+.card p, .card li{font-size:11.8px; color:#4b5065; line-height:1.55;}
+
+.callout{
+  border-radius:14px; padding:12px 14px; font-size:12px; line-height:1.6; display:flex; gap:10px; align-items:flex-start;
+}
+.callout svg{width:17px; height:17px; flex:none; margin-top:1px;}
+.callout.info{background:#eef2ff; color:#3730a3; border:1px solid #c7d2fe;}
+.callout.warning{background:#fff7ed; color:#9a3412; border:1px solid #fed7aa;}
+.callout.success{background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0;}
+.callout.reality{background:linear-gradient(135deg,#fdf4ff,#eff6ff); color:#581c87; border:1px solid #e9d5ff;}
+.callout b{font-weight:800;}
+
+.badge{display:inline-block; font-size:10px; font-weight:800; padding:3px 9px; border-radius:999px; background:#eef0ff; color:var(--violet); text-transform:uppercase; letter-spacing:.05em;}
+.badge.magenta{background:#fdf0ff; color:#a21caf;}
+.badge.cyan{background:#e6fbff; color:#0e7490;}
+
+.divider{height:1px; background:var(--gray-light); margin:12px 0;}
+
+/* Chapter header block used across content pages */
+.chapter-head{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;}
+.chapter-chip{
+  width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,var(--navy),var(--violet));
+  display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:16px; flex:none;
+}
+
+/* Tables */
+.table{width:100%; border-collapse:collapse; font-size:11.5px;}
+.table th{text-align:left; background:var(--navy); color:#fff; padding:7px 8px; font-size:10.5px; text-transform:uppercase; letter-spacing:.04em;}
+.table td{padding:7px 8px; border-bottom:1px solid var(--gray-light); color:#3f4360;}
+.table tr:nth-child(even) td{background:#f9f8ff;}
+
+/* Checklists */
+.checklist{list-style:none; display:flex; flex-direction:column; gap:8px;}
+.checklist li{display:flex; align-items:flex-start; gap:9px; font-size:12px; color:#3d4160; line-height:1.5;}
+.checklist input[type=checkbox]{
+  width:17px; height:17px; margin-top:1px; accent-color:var(--violet); flex:none; cursor:pointer;
+}
+label.check-row{display:flex; align-items:flex-start; gap:9px; font-size:12px; color:#3d4160; cursor:pointer;}
+
+/* Worksheet inputs */
+.worksheet{background:linear-gradient(135deg,#f7f4ff,#f2fbff); border:1px dashed #c9bff5; border-radius:16px; padding:14px 16px;}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:8px;}
+.field{display:flex; flex-direction:column; gap:4px;}
+.field label{font-size:10.5px; font-weight:700; color:var(--violet); text-transform:uppercase; letter-spacing:.04em;}
+.field input, .field textarea, .field select{
+  border:1px solid #d9d3f4; border-radius:9px; padding:7px 9px; font-size:12.5px; background:#fff; color:var(--ink);
+}
+.field input:focus, .field textarea:focus{outline:2px solid var(--violet); outline-offset:1px;}
+.worksheet-result{margin-top:10px; background:#fff; border-radius:12px; padding:10px 12px; border:1px solid #e2d9fb; display:flex; gap:14px; flex-wrap:wrap;}
+.result-chip{flex:1; min-width:110px;}
+.result-chip .v{font-size:19px; font-weight:800; color:var(--navy);}
+.result-chip .k{font-size:9.5px; color:var(--gray); text-transform:uppercase; letter-spacing:.05em;}
+
+/* Score bars */
+.score-row{display:flex; align-items:center; gap:10px; margin-bottom:9px;}
+.score-row label{width:130px; font-size:11.5px; font-weight:700; color:#3d4160; flex:none;}
+.score-row input[type=range]{flex:1; accent-color:var(--violet);}
+.score-row .val{width:24px; text-align:right; font-weight:800; font-size:12px; color:var(--violet);}
+.score-total{
+  margin-top:10px; border-radius:14px; padding:14px; text-align:center;
+  background:linear-gradient(135deg,var(--navy),var(--violet)); color:#fff;
+}
+.score-total .num{font-size:34px; font-weight:800;}
+.score-total .lbl{font-size:11px; letter-spacing:.08em; text-transform:uppercase; opacity:.85;}
+
+/* Illustration frame generic */
+.illustration{
+  border-radius:16px; background:linear-gradient(160deg,#0f1436,#1a1f52); position:relative; overflow:hidden;
+  padding:16px; color:#fff; margin:10px 0;
+}
+.illustration .glow{position:absolute; border-radius:50%; filter:blur(40px); opacity:.5;}
+.illustration-caption{font-size:10px; color:var(--gray); text-align:center; margin-top:6px; font-style:italic;}
+
+/* Funnel */
+.funnel{display:flex; flex-direction:column; align-items:center; gap:6px;}
+.funnel-step{
+  color:#0a0e27; font-weight:800; font-size:11.5px; text-align:center; padding:9px 0; border-radius:10px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.funnel-step svg{width:14px;height:14px;}
+.funnel-arrow{color:#c9caf5; font-size:12px;}
+
+/* Pin mockups */
+.pin-mock-lg{width:170px; border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 14px 30px rgba(20,10,60,.18); position:relative;}
+.pin-mock-lg .art{height:210px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+.pin-mock-lg .art .headline{position:absolute; color:#fff; font-weight:800; text-align:center; padding:0 12px; line-height:1.25;}
+.pin-mock-lg .art .cta{position:absolute; bottom:10px; background:#fff; color:#0a0e27; font-size:8.5px; font-weight:800; padding:4px 10px; border-radius:999px;}
+.pin-mock-lg .foot{padding:8px 10px; display:flex; align-items:center; gap:6px;}
+.pin-mock-lg .foot .avatar{width:18px;height:18px;border-radius:50%; background:linear-gradient(135deg,var(--violet),var(--cyan));}
+.pin-mock-lg .foot .name{font-size:9px; font-weight:700; color:#20233f;}
+
+/* Weekly calendar */
+.week-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:6px;}
+.week-day{border-radius:10px; padding:8px 6px; text-align:center; background:var(--offwhite); border:1px solid var(--gray-light);}
+.week-day .d{font-size:9.5px; font-weight:800; color:var(--violet); text-transform:uppercase;}
+.week-day .t{font-size:9.5px; color:#3d4160; margin-top:4px; line-height:1.3;}
+
+/* Dashboard */
+.dashboard{background:linear-gradient(160deg,#0f1436,#1a1f52); border-radius:16px; padding:16px; color:#fff;}
+.dash-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+.dash-metric{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:10px;}
+.dash-metric .k{font-size:9px; text-transform:uppercase; letter-spacing:.06em; color:#b7bce6;}
+.dash-metric .v{font-size:19px; font-weight:800; margin-top:3px;}
+.dash-metric .delta{font-size:9.5px; color:#6ee7c8; margin-top:2px;}
+
+/* Timeline / roadmap */
+.roadmap{position:relative; padding-left:26px;}
+.roadmap::before{content:"";position:absolute; left:9px; top:4px; bottom:4px; width:2px; background:linear-gradient(180deg,var(--violet),var(--cyan));}
+.road-step{position:relative; margin-bottom:14px;}
+.road-step::before{content:"";position:absolute; left:-26px; top:2px; width:14px; height:14px; border-radius:50%; background:#fff; border:3px solid var(--violet);}
+.road-step .t{font-weight:800; font-size:12.5px; color:var(--navy);}
+.road-step .d{font-size:11.5px; color:var(--gray); margin-top:2px; line-height:1.5;}
+
+/* Progress ring / bar */
+.progress-track{width:100%; height:8px; border-radius:999px; background:var(--gray-light); overflow:hidden;}
+.progress-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,var(--violet),var(--magenta),var(--cyan));}
+
+/* Comparison bad/good */
+.compare{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.compare .bad{border:1.5px solid #fecaca; background:#fff5f5; border-radius:14px; padding:12px;}
+.compare .good{border:1.5px solid #a7f3d0; background:#f0fdf7; border-radius:14px; padding:12px;}
+.compare .tag{font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; display:flex; align-items:center; gap:6px;}
+.compare .bad .tag{color:#b91c1c;}
+.compare .good .tag{color:#047857;}
+.compare p{font-size:11.5px; line-height:1.5; color:#3f425c;}
+
+/* Keyword map */
+.kw-map{display:flex; flex-direction:column; gap:8px; align-items:center;}
+.kw-seed{background:linear-gradient(135deg,var(--navy),var(--violet)); color:#fff; padding:9px 16px; border-radius:999px; font-weight:800; font-size:12.5px;}
+.kw-branch-row{display:flex; gap:8px; flex-wrap:wrap; justify-content:center;}
+.kw-leaf{background:var(--offwhite); border:1px solid var(--gray-light); border-radius:999px; padding:6px 12px; font-size:10.5px; font-weight:700; color:var(--violet);}
+
+/* Nav bar */
+.ebook-nav{
+  position:fixed; top:0; left:0; right:0; z-index:100; height:64px;
+  background:rgba(10,14,39,.92); backdrop-filter:blur(10px); display:flex; align-items:center; justify-content:space-between;
+  padding:0 18px; color:#fff; gap:14px;
+}
+.nav-left, .nav-right{display:flex; align-items:center; gap:8px;}
+.nav-brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:13px; white-space:nowrap;}
+.nav-brand .sq{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--magenta),var(--cyan));}
+.nav-btn{
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:#fff; padding:7px 12px; border-radius:999px;
+  font-size:11.5px; font-weight:700; display:flex; align-items:center; gap:6px; transition:.15s;
+}
+.nav-btn:hover{background:rgba(255,255,255,.18);}
+.nav-btn svg{width:13px;height:13px;}
+.nav-btn:disabled{opacity:.35; cursor:not-allowed;}
+.nav-page-indicator{font-size:11.5px; font-weight:700; color:#cfd0f8; min-width:64px; text-align:center;}
+.nav-progress{position:absolute; bottom:0; left:0; height:3px; background:linear-gradient(90deg,var(--violet),var(--magenta),var(--cyan)); width:0%; transition:width .1s;}
+
+/* TOC overlay */
+.toc-overlay{
+  position:fixed; inset:0; background:rgba(10,10,25,.7); backdrop-filter:blur(4px); z-index:200;
+  display:none; align-items:center; justify-content:center; padding:24px;
+}
+.toc-overlay.open{display:flex;}
+.toc-modal{
+  background:#fff; border-radius:20px; max-width:640px; width:100%; max-height:85vh; overflow-y:auto; padding:22px 24px; position:relative;
+}
+.toc-modal h3{font-size:19px; font-weight:800; margin-bottom:4px;}
+.toc-close{position:absolute; top:16px; right:16px; background:var(--offwhite); border:1px solid var(--gray-light); border-radius:999px; width:30px; height:30px; display:flex; align-items:center; justify-content:center;}
+.toc-modal .toc-list{grid-template-columns:1fr;}
+
+/* Back to top */
+.fab{
+  position:fixed; right:22px; bottom:24px; z-index:90; width:46px; height:46px; border-radius:50%;
+  background:linear-gradient(135deg,var(--violet),var(--magenta)); color:#fff; border:none; box-shadow:0 10px 25px rgba(124,58,237,.4);
+  display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:.25s;
+}
+.fab.show{opacity:1; pointer-events:auto;}
+.fab svg{width:20px;height:20px;}
+
+.container-wrap{max-width:8.6in; margin:0 auto;}
+
+/* =========================================================
+   RESPONSIVE STYLES
+========================================================= */
+@media (max-width:900px){
+  .ebook-page{width:94vw; min-height:auto; padding:26px 20px 40px; margin:20px auto;}
+  .cover-title{font-size:32px; max-width:100%;}
+  .cover-subtitle{font-size:14px; max-width:100%;}
+  .grid-2, .compare{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr 1fr;}
+  .dash-grid{grid-template-columns:1fr 1fr;}
+  .field-row{grid-template-columns:1fr;}
+  .week-grid{grid-template-columns:repeat(4,1fr);}
+  .nav-brand span.full{display:none;}
+  .page-title{font-size:24px;}
+}
+@media (max-width:520px){
+  .grid-3{grid-template-columns:1fr;}
+  .week-grid{grid-template-columns:repeat(2,1fr);}
+  .dash-grid{grid-template-columns:1fr 1fr;}
+  .cover-illustration{flex-wrap:wrap;}
+  .nav-page-indicator{display:none;}
+}
+
+/* =========================================================
+   PRINT / PDF STYLES
+========================================================= */
+@media print{
+  body{padding-top:0; background:#fff;}
+  .no-print{display:none !important;}
+  .ebook-page{
+    width:8in; min-height:10in; margin:0; box-shadow:none; border-radius:0;
+    page-break-after:always; break-after:page;
+  }
+  @page{ size:8in 10in; margin:0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ICON LIBRARY (hidden, reused via <use>) -->
+<svg style="display:none">
+<defs>
+<symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+<symbol id="ic-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 20V10"/><path d="M12 20V4"/><path d="M18 20v-7"/></symbol>
+<symbol id="ic-cursor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 3l7 17 2.2-6.8L20 11 4 3z"/></symbol>
+<symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="ic-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4V3z"/></symbol>
+<symbol id="ic-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5.5c0-2-2.2-3.5-5-3.5s-5 1.5-5 3.5 2 3 5 3.5 5 1.5 5 3.5-2.2 3.5-5 3.5-5-1.5-5-3.5"/></symbol>
+<symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></symbol>
+<symbol id="ic-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></symbol>
+<symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></symbol>
+<symbol id="ic-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 0 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 0 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 0 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9c.14.5.5.92 1 1.09.4.1.6.2.6.91v1c0 .7-.2.8-.6.91-.5.17-.86.59-1 1.09z"/></symbol>
+<symbol id="ic-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2z"/></symbol>
+<symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></symbol>
+<symbol id="ic-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="20" y1="12" x2="4" y2="12"/><polyline points="11 5 4 12 11 19"/></symbol>
+<symbol id="ic-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 11v2a2 2 0 0 0 2 2h1l4 4V5l-4 4H5a2 2 0 0 0-2 2z"/><path d="M15 8a4 4 0 0 1 0 8"/><path d="M18 5a8 8 0 0 1 0 14"/></symbol>
+<symbol id="ic-funnel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 4h18l-7 9v6l-4 2v-8L3 4z"/></symbol>
+<symbol id="ic-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+<symbol id="ic-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h13l-3 4 3 4H5"/></symbol>
+<symbol id="ic-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 2z"/></symbol>
+<symbol id="ic-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.5 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.65 4.36A9 9 0 0 0 20.5 15"/></symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></symbol>
+<symbol id="ic-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></symbol>
+<symbol id="ic-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+<symbol id="ic-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+</defs>
+</svg>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="ebook-nav no-print">
+  <div class="nav-left">
+    <div class="nav-brand"><span class="sq"></span><span class="full">GrowthVault</span></div>
+    <button class="nav-btn" id="btnToc"><svg><use href="#ic-list"/></svg> Contents</button>
+  </div>
+  <div class="nav-left">
+    <button class="nav-btn" id="btnPrev"><svg><use href="#ic-arrow-left"/></svg> Prev</button>
+    <span class="nav-page-indicator" id="pageIndicator">Page 1 / 28</span>
+    <button class="nav-btn" id="btnNext">Next <svg><use href="#ic-arrow-right"/></svg></button>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn" id="btnPrint"><svg><use href="#ic-print"/></svg> <span class="full">Print / PDF</span></button>
+  </div>
+  <div class="nav-progress" id="navProgress"></div>
+</nav>
+
+<!-- ============ TOC OVERLAY ============ -->
+<div class="toc-overlay no-print" id="tocOverlay">
+  <div class="toc-modal">
+    <button class="toc-close" id="tocClose">✕</button>
+    <h3>Table of Contents</h3>
+    <p class="small-note">Jump to any chapter</p>
+    <ul class="toc-list" id="tocList"></ul>
+  </div>
+</div>
+
+<button class="fab no-print" id="fabTop" title="Back to top"><svg><use href="#ic-up"/></svg></button>
+
+<!-- ================================================================= -->
+<!-- PAGE 1 — COVER -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-1">
+  <div class="cover-wrap">
+    <div class="cover-glow" style="width:340px;height:340px; top:-80px; left:-80px; background:var(--violet);"></div>
+    <div class="cover-glow" style="width:280px;height:280px; bottom:20px; right:-60px; background:var(--cyan);"></div>
+    <div class="cover-glow" style="width:220px;height:220px; bottom:180px; left:40%; background:var(--magenta);"></div>
+
+    <div class="cover-top">
+      <div class="brand-tag"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#ic-target"/></svg></span> GrowthVault</div>
+      <div class="cover-pill">Affiliate Marketing Playbook</div>
+    </div>
+
+    <div class="cover-center">
+      <h1 class="cover-title">The <span class="accent">$1K/Month</span> Pinterest Affiliate System</h1>
+      <p class="cover-subtitle">Build a Profitable Business Without Ads or Followers — a practical, step-by-step organic traffic &amp; affiliate framework for beginners.</p>
+      <div class="cover-badges">
+        <span class="cover-badge">28-Page Playbook</span>
+        <span class="cover-badge">Interactive Worksheets</span>
+        <span class="cover-badge">90-Day Growth Plan</span>
+        <span class="cover-badge">No Ads Required</span>
+      </div>
+
+      <div class="cover-illustration">
+        <div class="pin-card" style="transform:rotate(-6deg) translateY(6px);">
+          <div class="thumb" style="background:linear-gradient(135deg,var(--violet),var(--magenta));">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-bulb"/></svg>
+          </div>
+          <div class="meta"><div class="t">Pinterest SEO Guide</div><div class="s">growthvault.co</div></div>
+        </div>
+        <div class="pin-card" style="transform:translateY(-10px);">
+          <div class="thumb" style="background:linear-gradient(135deg,var(--cyan),var(--blue));">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-chart"/></svg>
+          </div>
+          <div class="meta"><div class="t">Affiliate Income Tips</div><div class="s">growthvault.co</div></div>
+        </div>
+        <div class="pin-card" style="transform:rotate(5deg) translateY(2px);">
+          <div class="thumb" style="background:linear-gradient(135deg,var(--magenta),var(--cyan));">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-dollar"/></svg>
+          </div>
+          <div class="meta"><div class="t">Best Tools 2026</div><div class="s">growthvault.co</div></div>
+        </div>
+        <div style="margin-left:10px;">
+          <div class="mini-bars">
+            <i style="height:22px;"></i><i style="height:34px;"></i><i style="height:28px;"></i><i style="height:46px;"></i><i style="height:40px;"></i><i style="height:60px;"></i>
+          </div>
+          <div style="font-size:9px; color:#c9caef; margin-top:6px; letter-spacing:.06em; text-transform:uppercase;">Illustrative growth trend</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-author">Written by<b>GrowthVault</b></div>
+      <div class="cover-disclaimer">Educational content only. $1K/month is a target/example, not a guaranteed outcome. Results vary based on effort, offer quality, and execution.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================= -->
+<!-- PAGE 2 — TABLE OF CONTENTS (1/2) -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-2">
+  <div class="kicker"><span class="dot"></span>CONTENTS</div>
+  <h2 class="page-title">Table of Contents</h2>
+  <p class="page-subtitle">Tap any chapter to jump straight there. Part 1 of 2.</p>
+
+  <ul class="toc-list">
+    <li><a class="toc-item" data-goto="page-4"><span class="toc-num">01</span><span class="toc-info"><div class="t">The Pinterest Affiliate Opportunity</div><div class="p">How Pinterest works as a discovery engine for affiliate income</div></span><span class="toc-page">04</span></a></li>
+    <li><a class="toc-item" data-goto="page-6"><span class="toc-num">02</span><span class="toc-info"><div class="t">Build Your Pinterest Business Foundation</div><div class="p">Niche, account setup, and profile fundamentals</div></span><span class="toc-page">06</span></a></li>
+    <li><a class="toc-item" data-goto="page-8"><span class="toc-num">03</span><span class="toc-info"><div class="t">Find Profitable Affiliate Offers</div><div class="p">Evaluating commissions, programs, and offer quality</div></span><span class="toc-page">08</span></a></li>
+    <li><a class="toc-item" data-goto="page-10"><span class="toc-num">04</span><span class="toc-info"><div class="t">Pinterest Keyword Research</div><div class="p">Finding and clustering the keywords buyers search</div></span><span class="toc-page">10</span></a></li>
+    <li><a class="toc-item" data-goto="page-13"><span class="toc-num">05</span><span class="toc-info"><div class="t">Create a High-Converting Pinterest Profile</div><div class="p">Turning your profile into a trust-building asset</div></span><span class="toc-page">13</span></a></li>
+  </ul>
+
+  <div class="illustration" style="margin-top:auto;">
+    <div class="glow" style="width:200px;height:200px; top:-40px; right:-40px; background:var(--violet);"></div>
+    <div style="position:relative; display:flex; align-items:center; gap:16px;">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-layers"/></svg>
+      <div>
+        <div style="font-weight:800; font-size:14px;">10 Chapters. One Repeatable System.</div>
+        <div style="font-size:11.5px; color:#c7c9ef; margin-top:3px;">Each chapter builds on the last — from strategy to execution to optimization.</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Pinterest Affiliate System</div>
+  <div class="page-number">02</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- PAGE 3 — TABLE OF CONTENTS (2/2) -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-3">
+  <div class="kicker"><span class="dot"></span>CONTENTS</div>
+  <h2 class="page-title">Table of Contents</h2>
+  <p class="page-subtitle">Part 2 of 2 — plus how to use this ebook.</p>
+
+  <ul class="toc-list">
+    <li><a class="toc-item" data-goto="page-15"><span class="toc-num">06</span><span class="toc-info"><div class="t">Design Click-Worthy Pins</div><div class="p">Headlines, visuals, and CTA formulas that earn clicks</div></span><span class="toc-page">15</span></a></li>
+    <li><a class="toc-item" data-goto="page-18"><span class="toc-num">07</span><span class="toc-info"><div class="t">Build Your Organic Traffic Engine</div><div class="p">Publishing rhythm, content clusters, and consistency</div></span><span class="toc-page">18</span></a></li>
+    <li><a class="toc-item" data-goto="page-21"><span class="toc-num">08</span><span class="toc-info"><div class="t">Turn Pinterest Traffic Into Affiliate Clicks</div><div class="p">Funnels, landing pages, and ethical disclosure</div></span><span class="toc-page">21</span></a></li>
+    <li><a class="toc-item" data-goto="page-23"><span class="toc-num">09</span><span class="toc-info"><div class="t">Scale, Automate &amp; Optimize</div><div class="p">Analytics, repurposing, and building a growth loop</div></span><span class="toc-page">23</span></a></li>
+    <li><a class="toc-item" data-goto="page-26"><span class="toc-num">10</span><span class="toc-info"><div class="t">Your 90-Day Pinterest Growth Plan</div><div class="p">A day-by-day roadmap plus your income model calculator</div></span><span class="toc-page">26</span></a></li>
+  </ul>
+
+  <div class="card" style="margin-top:14px;">
+    <div class="card-title"><svg><use href="#ic-bulb"/></svg>How To Use This Ebook</div>
+    <p>This ebook contains interactive worksheets, checklists, and calculators. Use the navigation bar at the top to move between pages, open the table of contents, or print/export the whole book as a PDF. All fields work directly in your browser — nothing is uploaded or shared.</p>
+  </div>
+
+  <div class="callout reality" style="margin-top:12px;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-shield"/></svg>
+    <p><b>A note on expectations:</b> $1,000/month is presented throughout this book as a target and example, not a guarantee. Your actual results depend on traffic quality, content quality, offer quality, conversion rates, click-through rates, consistency, competition, audience fit, and execution.</p>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Pinterest Affiliate System</div>
+  <div class="page-number">03</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 1 — PAGE 4 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-4">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">01</div>
+      <div>
+        <div class="kicker"><span class="dot"></span>CHAPTER 1</div>
+        <h2 class="page-title" style="margin:2px 0 0;">The Pinterest Affiliate Opportunity</h2>
+      </div>
+    </div>
+  </div>
+  <p class="lead">Pinterest is often misunderstood as "just another social network." In reality, it behaves more like a visual search engine — which is exactly what makes it valuable for affiliate marketers who don't want to rely on ads or a large following.</p>
+
+  <div class="section-heading"><svg><use href="#ic-search"/></svg>What Pinterest Actually Is</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><svg><use href="#ic-search"/></svg>A Search &amp; Discovery Engine</div>
+      <p>Users come to Pinterest actively looking for ideas, products, and solutions — much like Google or YouTube. Content is indexed and surfaced by relevance, not just follower count.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><svg><use href="#ic-clock"/></svg>Long Content Lifespan</div>
+      <p>A single pin can continue generating impressions for months, unlike typical social posts that fade within hours. This makes consistent, quality content compound over time.</p>
+    </div>
+  </div>
+
+  <div class="section-heading"><svg><use href="#ic-layers"/></svg>Pinterest vs. Traditional Social Media</div>
+  <table class="table">
+    <tr><th>Traditional Social Media</th><th>Pinterest</th></tr>
+    <tr><td>Rewards follower count &amp; virality</td><td>Rewards keyword relevance &amp; helpfulness</td></tr>
+    <tr><td>Content lifespan: hours</td><td>Content lifespan: weeks to months</td></tr>
+    <tr><td>Users seek social connection</td><td>Users seek ideas &amp; solutions (buyer intent)</td></tr>
+    <tr><td>Growth requires large audience</td><td>Growth possible with zero followers, via search</td></tr>
+  </table>
+
+  <div class="illustration">
+    <div class="glow" style="width:180px;height:180px; top:-30px; left:60%; background:var(--cyan);"></div>
+    <div style="position:relative;">
+      <div style="font-weight:800; font-size:12.5px; margin-bottom:10px;">Search &amp; Discovery Flow</div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; font-size:10.5px; display:flex; align-items:center; gap:6px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><use href="#ic-search"/></svg>User searches a need</div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; font-size:10.5px; display:flex; align-items:center; gap:6px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><use href="#ic-eye"/></svg>Relevant pins surface</div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; font-size:10.5px; display:flex; align-items:center; gap:6px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><use href="#ic-cursor"/></svg>Click to your content</div>
+      </div>
+    </div>
+    <div class="illustration-caption">Visual 2 — Search &amp; discovery is the engine behind Pinterest traffic</div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 1 · Opportunity</div>
+  <div class="page-number">04</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 1 — PAGE 5 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-5">
+  <div class="kicker"><span class="dot"></span>CHAPTER 1 · CONTINUED</div>
+  <h2 class="page-title">How Affiliate Income Actually Works</h2>
+  <p class="lead">Affiliate marketing pays you a commission when someone clicks your unique link and completes a qualifying action (usually a purchase). Pinterest's role is simple: send interested, relevant traffic toward that link.</p>
+
+  <div class="illustration">
+    <div class="glow" style="width:160px;height:160px; bottom:-30px; right:0; background:var(--magenta);"></div>
+    <div style="position:relative;">
+      <div style="font-weight:800; font-size:12.5px; margin-bottom:10px;">Visual 1 — Traffic → Click → Conversion Model</div>
+      <div class="funnel">
+        <div class="funnel-step" style="background:linear-gradient(90deg,#c7d2fe,#a5b4fc); width:100%;"><svg><use href="#ic-eye"/></svg>Pinterest Impression</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step" style="background:linear-gradient(90deg,#a5b4fc,#c4b5fd); width:82%;"><svg><use href="#ic-cursor"/></svg>Pin Click</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step" style="background:linear-gradient(90deg,#c4b5fd,#f0abfc); width:64%;"><svg><use href="#ic-link"/></svg>Landing Page / Offer</div>
+        <div class="funnel-arrow">▼</div>
+        <div class="funnel-step" style="background:linear-gradient(90deg,#f0abfc,#67e8f9); width:46%;"><svg><use href="#ic-dollar"/></svg>Commission Earned</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:6px;">
+    <div class="callout reality"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-shield"/></svg><p><b>Realistic expectations:</b> Most beginners see gradual growth over weeks and months, not overnight results. Traffic and income typically compound as your pin library grows.</p></div>
+    <div class="callout warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-flag"/></svg><p><b>Common misconception:</b> "Passive income" doesn't mean "no work." It means the work (creating pins, choosing offers) can keep paying off after it's done — not that it requires zero effort upfront.</p></div>
+  </div>
+
+  <div class="section-heading"><svg><use href="#ic-target"/></svg>Practical Exercise: Define Your Pinterest Income Goal</div>
+  <div class="worksheet">
+    <div class="field-row">
+      <div class="field"><label>Monthly Income Target ($)</label><input type="number" id="goalTarget" placeholder="e.g. 1000" value="1000"></div>
+      <div class="field"><label>Average Commission Per Sale ($)</label><input type="number" id="goalCommission" placeholder="e.g. 25" value="25"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Estimated Conversion Rate (%)</label><input type="number" id="goalConversion" placeholder="e.g. 2" value="2"></div>
+      <div class="field"><label>&nbsp;</label><button class="nav-btn" style="background:var(--violet); justify-content:center;" onclick="calcGoal()">Calculate</button></div>
+    </div>
+    <div class="worksheet-result">
+      <div class="result-chip"><div class="v" id="goalSales">40</div><div class="k">Sales Needed / Month</div></div>
+      <div class="result-chip"><div class="v" id="goalClicks">2,000</div><div class="k">Est. Clicks Needed</div></div>
+      <div class="result-chip"><div class="v" id="goalPerDay">67</div><div class="k">Clicks Needed / Day</div></div>
+    </div>
+    <p class="small-note" style="margin-top:8px;">This is an educational planning exercise, not a guarantee of income. Actual conversion rates and commissions vary by niche and offer.</p>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 1 · Opportunity</div>
+  <div class="page-number">05</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 2 — PAGE 6 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-6">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">02</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 2</div><h2 class="page-title" style="margin:2px 0 0;">Build Your Pinterest Business Foundation</h2></div>
+    </div>
+  </div>
+  <p class="lead">Before designing a single pin, you need a solid foundation: a niche that has real demand and buyer intent, and a Pinterest account structured to be found in search.</p>
+
+  <div class="section-heading"><svg><use href="#ic-target"/></svg>Choosing a Profitable Niche</div>
+  <div class="grid-3">
+    <div class="card"><div class="card-title"><svg><use href="#ic-search"/></svg>Demand</div><p>Are people actively searching and saving content in this topic on Pinterest?</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-dollar"/></svg>Commercial Intent</div><p>Do searchers in this niche buy products, tools, or courses to solve their problem?</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-layers"/></svg>Content Potential</div><p>Can you realistically produce dozens of pin ideas and topics long-term?</p></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:14px;"><svg><use href="#ic-bulb"/></svg>Audience Research &amp; Content Angle</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><svg><use href="#ic-eye"/></svg>Understand the Buyer</div>
+      <p>Ask: what problem are they trying to solve right now? What have they already tried? What outcome do they want? Your content angle should speak directly to that moment of need.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><svg><use href="#ic-flag"/></svg>Buyer Intent Signals</div>
+      <p>Look for searches that imply action: "best," "review," "vs," "for beginners," "how to start." These signal readiness to click and potentially buy.</p>
+    </div>
+  </div>
+
+  <div class="illustration" style="margin-top:auto;">
+    <div class="glow" style="width:200px;height:200px; top:-50px; left:-40px; background:var(--violet);"></div>
+    <div style="position:relative; display:flex; align-items:center; gap:16px;">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-grid"/></svg>
+      <div><div style="font-weight:800; font-size:13.5px;">Foundation First, Volume Second</div><div style="font-size:11.5px; color:#c7c9ef; margin-top:3px;">A clear niche + intent-matched content angle makes every future pin easier to create and rank.</div></div>
+    </div>
+  </div>
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 2 · Foundation</div>
+  <div class="page-number">06</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 2 — PAGE 7 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-7">
+  <div class="kicker"><span class="dot"></span>CHAPTER 2 · CONTINUED</div>
+  <h2 class="page-title">Set Up Your Pinterest Business Account</h2>
+  <p class="lead">Your profile is the first trust signal a searcher sees. Optimize it with the same care you give your niche selection.</p>
+
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>Username Strategy</div><p>Keep it short, brandable, and where possible include a relevant keyword or clear niche cue.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>Display-Name Strategy</div><p>Combine your brand name with a primary keyword phrase searchers use (e.g. "GrowthVault | Pinterest Marketing").</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>Bio Optimization</div><p>Clearly state who you help and how, using 2–3 natural keyword phrases — avoid keyword stuffing.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>Board Structure</div><p>Create 8–12 boards around core topics and subtopics inside your niche, each with a keyword-rich title.</p></div>
+  </div>
+
+  <div class="section-heading"><svg><use href="#ic-chart"/></svg>Niche Selection Scorecard</div>
+  <div class="worksheet">
+    <div class="score-row"><label>Demand</label><input type="range" min="1" max="10" value="7" oninput="updateScore(this,'sDemand')"><span class="val" id="sDemand">7</span></div>
+    <div class="score-row"><label>Commercial Intent</label><input type="range" min="1" max="10" value="6" oninput="updateScore(this,'sIntent')"><span class="val" id="sIntent">6</span></div>
+    <div class="score-row"><label>Competition (lower=better)</label><input type="range" min="1" max="10" value="5" oninput="updateScore(this,'sComp')"><span class="val" id="sComp">5</span></div>
+    <div class="score-row"><label>Content Potential</label><input type="range" min="1" max="10" value="8" oninput="updateScore(this,'sContent')"><span class="val" id="sContent">8</span></div>
+    <div class="score-row"><label>Affiliate Availability</label><input type="range" min="1" max="10" value="7" oninput="updateScore(this,'sAffiliate')"><span class="val" id="sAffiliate">7</span></div>
+    <div class="score-total"><div class="num" id="scoreTotal">66</div><div class="lbl" id="scoreLabel">Good Niche Potential</div></div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 2 · Foundation</div>
+  <div class="page-number">07</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 3 — PAGE 8 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-8">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">03</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 3</div><h2 class="page-title" style="margin:2px 0 0;">Find Profitable Affiliate Offers</h2></div>
+    </div>
+  </div>
+  <p class="lead">Not every affiliate program is worth your traffic. A good offer balances commission size, conversion potential, and audience fit.</p>
+
+  <div class="section-heading"><svg><use href="#ic-dollar"/></svg>What Makes an Offer Attractive</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><svg><use href="#ic-refresh"/></svg>Recurring vs. One-Time</div><p>Recurring commissions (SaaS/subscriptions) compound monthly, while one-time payouts (courses, physical goods) require ongoing new sales.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-layers"/></svg>Offer Types</div><p>Digital products, SaaS/software, online courses, curated marketplaces, and physical products each have different commission structures.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-chart"/></svg>EPC (Earnings Per Click)</div><p>A high EPC signals the offer converts well for other affiliates — useful as a comparison metric across programs.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-clock"/></svg>Cookie Duration</div><p>Longer cookie windows mean you still get credit if the buyer purchases days or weeks after clicking.</p></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:12px;"><svg><use href="#ic-shield"/></svg>Program Rules &amp; Restrictions</div>
+  <p class="lead">Always review each program's promotional guidelines — some restrict direct linking, paid ads, or specific claims. Compliance protects your account and your income.</p>
+
+  <div class="illustration" style="margin-top:auto;">
+    <div class="glow" style="width:180px;height:180px; top:-40px; right:20px; background:var(--cyan);"></div>
+    <div style="position:relative;">
+      <div style="font-weight:800; font-size:12.5px; margin-bottom:8px;">Affiliate Funnel Overview</div>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Pinterest Content</div>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Your Link/Page</div>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Affiliate Program</div>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Commission Paid</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 3 · Offers</div>
+  <div class="page-number">08</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 3 — PAGE 9 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-9">
+  <div class="kicker"><span class="dot"></span>CHAPTER 3 · CONTINUED</div>
+  <h2 class="page-title">Profitability Evaluation Checklist</h2>
+  <p class="lead">Before promoting any offer, run it through this checklist. Check items as you evaluate a real program.</p>
+
+  <div class="worksheet">
+    <ul class="checklist">
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="c1">Commission amount is worth the traffic effort required</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="c2">Product price point matches audience buying power</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="c3">Recurring revenue potential (if applicable) is confirmed</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="c4">Conversion potential seems reasonable for the niche</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="c5">Offer genuinely fits your audience's needs</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="c6">Program/brand has a solid reputation</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="c7">Refund/chargeback risk is acceptable</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="c8">Promotional restrictions and disclosure rules reviewed</label></li>
+    </ul>
+    <div class="progress-track" style="margin-top:12px;"><div class="progress-fill" id="c-progress" style="width:0%;"></div></div>
+    <p class="small-note" style="margin-top:6px;" id="c-progress-label">0 of 8 checked</p>
+  </div>
+
+  <div class="callout info" style="margin-top:14px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-shield"/></svg><p><b>Compliance reminder:</b> Always follow FTC-style affiliate disclosure requirements and each platform's/program's specific promotional policies.</p></div>
+
+  <div class="grid-2" style="margin-top:12px;">
+    <div class="card"><div class="card-title"><svg><use href="#ic-star"/></svg>Strong Offer Signs</div><p>Clear value proposition, healthy commission, good reviews, reasonable cookie window, transparent terms.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-flag"/></svg>Warning Signs</div><p>Vague terms, unusually high refund rates, restrictive/unclear promotional rules, poor reputation.</p></div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 3 · Offers</div>
+  <div class="page-number">09</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 4 — PAGE 10 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-10">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">04</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 4</div><h2 class="page-title" style="margin:2px 0 0;">Pinterest Keyword Research</h2></div>
+    </div>
+  </div>
+  <p class="lead">Keywords are how Pinterest understands and ranks your content. Good keyword research aligns your pins with what real people are already typing into search.</p>
+
+  <div class="section-heading"><svg><use href="#ic-search"/></svg>Understanding Search Intent</div>
+  <div class="grid-2">
+    <div class="card"><div class="card-title">Informational</div><p>The searcher wants to learn something, e.g. "what is Pinterest SEO."</p></div>
+    <div class="card"><div class="card-title">Commercial / Buyer-Intent</div><p>The searcher is close to purchasing, e.g. "best Pinterest scheduling tool."</p></div>
+    <div class="card"><div class="card-title">Problem-Based</div><p>The searcher has a pain point, e.g. "Pinterest traffic dropped, how to fix."</p></div>
+    <div class="card"><div class="card-title">Seasonal</div><p>Demand spikes at specific times of year, e.g. "New Year Pinterest strategy."</p></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:12px;"><svg><use href="#ic-layers"/></svg>Seed Keywords → Long-Tail Variations</div>
+  <div class="kw-map">
+    <div class="kw-seed">Pinterest Marketing</div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a5a8c9" stroke-width="2"><use href="#ic-arrow-right" transform="rotate(90 12 12)"/></svg>
+    <div class="kw-branch-row">
+      <span class="kw-leaf">pinterest marketing for beginners</span>
+      <span class="kw-leaf">pinterest affiliate marketing</span>
+      <span class="kw-leaf">pinterest SEO strategy</span>
+      <span class="kw-leaf">pinterest traffic strategy</span>
+      <span class="kw-leaf">pinterest affiliate marketing without a website</span>
+    </div>
+  </div>
+  <p class="illustration-caption" style="color:var(--gray);">Visual — expanding one seed keyword into multiple long-tail, intent-matched variations</p>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 4 · Keywords</div>
+  <div class="page-number">10</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 4 — PAGE 11 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-11">
+  <div class="kicker"><span class="dot"></span>CHAPTER 4 · CONTINUED</div>
+  <h2 class="page-title">Keyword Types &amp; Clustering</h2>
+  <p class="lead">Group related keywords into clusters so a handful of boards and pins can cover a full topic comprehensively — improving relevance signals across your account.</p>
+
+  <table class="table">
+    <tr><th>Keyword Type</th><th>Example</th><th>Best Use</th></tr>
+    <tr><td>Seed Keyword</td><td>pinterest marketing</td><td>Board naming, broad topic anchor</td></tr>
+    <tr><td>Long-Tail</td><td>pinterest marketing for beginners</td><td>Specific pin titles &amp; descriptions</td></tr>
+    <tr><td>Commercial</td><td>best pinterest scheduler</td><td>Product/tool comparison content</td></tr>
+    <tr><td>Problem-Based</td><td>why is my pinterest traffic low</td><td>Troubleshooting / solution pins</td></tr>
+    <tr><td>Seasonal</td><td>pinterest strategy for Q1</td><td>Timed seasonal content pushes</td></tr>
+  </table>
+
+  <div class="section-heading" style="margin-top:12px;"><svg><use href="#ic-grid"/></svg>Where to Find Keyword Ideas</div>
+  <div class="grid-3">
+    <div class="card"><div class="card-title"><svg><use href="#ic-search"/></svg>Search Suggestions</div><p>Type a seed term into Pinterest search and note the auto-suggested phrases.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-grid"/></svg>Related Pins</div><p>Guided search "pills" shown above search results reveal related, popular terms.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-layers"/></svg>Competitor Boards</div><p>Study top-ranking boards/pins in your niche for recurring keyword phrases.</p></div>
+  </div>
+
+  <div class="callout info" style="margin-top:14px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-bulb"/></svg><p><b>Matching keywords to content:</b> Every pin title, description, and board name should use natural language that mirrors real searches — never force keywords in a way that reads awkwardly.</p></div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 4 · Keywords</div>
+  <div class="page-number">11</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 4 — PAGE 12 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-12">
+  <div class="kicker"><span class="dot"></span>CHAPTER 4 · CONTINUED</div>
+  <h2 class="page-title">Keyword Research Worksheet</h2>
+  <p class="lead">Fill in your own seed-to-offer keyword map below. This worksheet saves automatically in your browser.</p>
+
+  <div class="worksheet">
+    <table class="table" id="kwTable">
+      <tr><th>Seed Keyword</th><th>Long-Tail Keyword</th><th>Search Intent</th><th>Pin Topic</th><th>Affiliate Offer</th></tr>
+      <tr>
+        <td><input type="text" class="kw-input" data-row="1" data-col="seed" placeholder="e.g. pinterest marketing" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="1" data-col="long" placeholder="pinterest marketing for beginners" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="1" data-col="intent" placeholder="informational" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="1" data-col="topic" placeholder="beginner guide pin" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="1" data-col="offer" placeholder="course / tool" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+      </tr>
+      <tr>
+        <td><input type="text" class="kw-input" data-row="2" data-col="seed" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="2" data-col="long" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="2" data-col="intent" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="2" data-col="topic" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="2" data-col="offer" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+      </tr>
+      <tr>
+        <td><input type="text" class="kw-input" data-row="3" data-col="seed" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="3" data-col="long" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="3" data-col="intent" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="3" data-col="topic" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="3" data-col="offer" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+      </tr>
+      <tr>
+        <td><input type="text" class="kw-input" data-row="4" data-col="seed" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="4" data-col="long" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="4" data-col="intent" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="4" data-col="topic" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+        <td><input type="text" class="kw-input" data-row="4" data-col="offer" style="width:100%; border:1px solid #d9d3f4; border-radius:6px; padding:4px 6px; font-size:11px;"></td>
+      </tr>
+    </table>
+  </div>
+  <p class="small-note" style="margin-top:8px;">Tip: start with 1 seed keyword and branch into 4–6 long-tail variations before moving to the next seed.</p>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 4 · Keywords</div>
+  <div class="page-number">12</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 5 — PAGE 13 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-13">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">05</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 5</div><h2 class="page-title" style="margin:2px 0 0;">Create a High-Converting Pinterest Profile</h2></div>
+    </div>
+  </div>
+  <p class="lead">Your profile is where cold search traffic decides whether to trust and follow you. Every element should reinforce clarity, credibility, and keyword relevance.</p>
+
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>SEO-Friendly Display Name</div><p>Pair your brand with a core keyword phrase your audience searches for.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>Keyword-Rich Bio</div><p>State who you help, how, and include 2–3 natural search phrases.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>Board Naming &amp; Descriptions</div><p>Use clear, keyword-matched board titles with helpful 1–2 sentence descriptions.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>Profile Image &amp; Branding</div><p>Use a clean, recognizable logo or headshot and consistent color branding across pins.</p></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:12px;"><svg><use href="#ic-link"/></svg>Website Connection &amp; Trust Signals</div>
+  <p class="lead">Where appropriate, connect and claim your website to unlock analytics and a verified trust badge. Consistent branding, clear content categories, and an active pinning history all build credibility with both users and Pinterest's algorithm.</p>
+
+  <div class="illustration" style="margin-top:auto;">
+    <div class="glow" style="width:180px;height:180px; top:-30px; right:-20px; background:var(--violet);"></div>
+    <div style="position:relative; display:flex; align-items:center; gap:16px;">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-shield"/></svg>
+      <div><div style="font-weight:800; font-size:13.5px;">Trust Compounds Over Time</div><div style="font-size:11.5px; color:#c7c9ef; margin-top:3px;">A complete, consistent, keyword-optimized profile earns more clicks per impression than a generic one.</div></div>
+    </div>
+  </div>
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 5 · Profile</div>
+  <div class="page-number">13</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 5 — PAGE 14 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-14">
+  <div class="kicker"><span class="dot"></span>CHAPTER 5 · CONTINUED</div>
+  <h2 class="page-title">Profile Optimization Checklist</h2>
+
+  <div class="worksheet">
+    <ul class="checklist">
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="p1">Display name includes brand + primary keyword</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="p2">Bio clearly explains who you help and how</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="p3">8–12 boards created with keyword-rich titles</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="p4">Every board has a helpful description</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="p5">Profile image is clear, on-brand, and consistent</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check" id="p6">Website claimed/connected where applicable</label></li>
+    </ul>
+  </div>
+
+  <div class="section-heading" style="margin-top:14px;"><svg><use href="#ic-layers"/></svg>Bad Profile → Optimized Profile</div>
+  <div class="compare">
+    <div class="bad">
+      <div class="tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#ic-flag"/></svg>Before</div>
+      <p><b>Name:</b> "Jsmith123"<br><b>Bio:</b> "I like pinning cool stuff 😊"<br><b>Boards:</b> "Board 1," "Stuff I Like," "Random"</p>
+    </div>
+    <div class="good">
+      <div class="tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#ic-check"/></svg>After</div>
+      <p><b>Name:</b> "GrowthVault | Pinterest Marketing Tips"<br><b>Bio:</b> "Helping beginners build Pinterest affiliate income with simple, organic strategies."<br><b>Boards:</b> "Pinterest SEO for Beginners," "Affiliate Marketing Tools," "Content Planning Templates"</p>
+    </div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 5 · Profile</div>
+  <div class="page-number">14</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 6 — PAGE 15 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-15">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">06</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 6</div><h2 class="page-title" style="margin:2px 0 0;">Design Click-Worthy Pins</h2></div>
+    </div>
+  </div>
+  <p class="lead">A pin has a fraction of a second to earn attention while scrolling. Strong visual hierarchy, a clear headline, and an obvious next step make the difference between a scroll-past and a click.</p>
+
+  <div class="section-heading"><svg><use href="#ic-layers"/></svg>What Makes a Strong Pin</div>
+  <div class="grid-3">
+    <div class="card"><div class="card-title">Visual Hierarchy</div><p>One clear focal point; supporting text stays secondary.</p></div>
+    <div class="card"><div class="card-title">Bold Headline</div><p>Large, legible text that states the benefit instantly.</p></div>
+    <div class="card"><div class="card-title">Contrast &amp; Branding</div><p>High contrast colors and consistent fonts/logo placement.</p></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:12px;"><svg><use href="#ic-bulb"/></svg>Reusable Headline Formulas</div>
+  <div class="grid-2">
+    <div class="card"><p>"X Ways to [Achieve Result]"</p></div>
+    <div class="card"><p>"The Beginner's Guide to [Topic]"</p></div>
+    <div class="card"><p>"How to [Solve Problem] in [Timeframe]"</p></div>
+    <div class="card"><p>"X Mistakes to Avoid When [Doing Task]"</p></div>
+    <div class="card"><p>"The Simple System for [Outcome]"</p></div>
+    <div class="card"><p>"Before You Try [X], Read This"</p></div>
+  </div>
+
+  <div class="callout success" style="margin-top:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-star"/></svg><p><b>High-Converting Pin Formula:</b> Hook + Benefit + Curiosity + Visual + CTA. Combine all five to maximize click-through.</p></div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 6 · Pin Design</div>
+  <div class="page-number">15</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 6 — PAGE 16 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-16">
+  <div class="kicker"><span class="dot"></span>CHAPTER 6 · CONTINUED</div>
+  <h2 class="page-title">Pin Mockup Examples</h2>
+  <p class="lead">Three distinct pin styles applying the Hook + Benefit + Curiosity + Visual + CTA formula.</p>
+
+  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:8px;">
+    <div class="pin-mock-lg">
+      <div class="art" style="background:linear-gradient(160deg,var(--navy),var(--violet));">
+        <div class="headline" style="font-size:16px; top:22px;">7 Pinterest<br>Mistakes Killing<br>Your Traffic</div>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.4" style="position:absolute; bottom:44px;"><use href="#ic-flag"/></svg>
+        <div class="cta">Read the Guide →</div>
+      </div>
+      <div class="foot"><div class="avatar"></div><div class="name">GrowthVault</div></div>
+    </div>
+    <div class="pin-mock-lg">
+      <div class="art" style="background:linear-gradient(160deg,var(--blue),var(--cyan));">
+        <div class="headline" style="font-size:15px; top:20px;">The Beginner's<br>Guide to Pinterest<br>Affiliate Income</div>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.4" style="position:absolute; bottom:44px;"><use href="#ic-target"/></svg>
+        <div class="cta">Start Here →</div>
+      </div>
+      <div class="foot"><div class="avatar"></div><div class="name">GrowthVault</div></div>
+    </div>
+    <div class="pin-mock-lg">
+      <div class="art" style="background:linear-gradient(160deg,var(--magenta),var(--purple));">
+        <div class="headline" style="font-size:16px; top:22px;">How I Plan<br>30 Pins in<br>30 Minutes</div>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.4" style="position:absolute; bottom:44px;"><use href="#ic-calendar"/></svg>
+        <div class="cta">See the System →</div>
+      </div>
+      <div class="foot"><div class="avatar"></div><div class="name">GrowthVault</div></div>
+    </div>
+  </div>
+
+  <div class="callout info" style="margin-top:16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-bulb"/></svg><p>Notice each mockup uses: a bold benefit-driven headline, one supporting icon/image, consistent branding footer, and a clear CTA button.</p></div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 6 · Pin Design</div>
+  <div class="page-number">16</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 6 — PAGE 17 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-17">
+  <div class="kicker"><span class="dot"></span>CHAPTER 6 · CONTINUED</div>
+  <h2 class="page-title">Formats, Variations &amp; Testing</h2>
+
+  <div class="section-heading"><svg><use href="#ic-grid"/></svg>Pin Formats</div>
+  <div class="grid-3">
+    <div class="card"><div class="card-title">Standard Vertical</div><p>2:3 ratio — the safest, most consistently recommended format.</p></div>
+    <div class="card"><div class="card-title">Idea Pins</div><p>Multi-page, native-feeling content for deeper engagement.</p></div>
+    <div class="card"><div class="card-title">Video Pins</div><p>Short, benefit-led motion content that can stand out in feeds.</p></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:12px;"><svg><use href="#ic-refresh"/></svg>Creative Variations &amp; A/B Testing</div>
+  <p class="lead">Create 3–5 design variations per topic (different headline, color, or layout) and monitor which earns the most clicks and saves. Retire weak designs and produce more variations of top performers.</p>
+
+  <div class="illustration">
+    <div class="glow" style="width:160px;height:160px; bottom:-30px; left:20px; background:var(--cyan);"></div>
+    <div style="position:relative;">
+      <div style="font-weight:800; font-size:12.5px; margin-bottom:10px;">Testing Framework</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; font-size:10.5px;">1. Pick 1 topic</div>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; font-size:10.5px;">2. Design 3–5 variants</div>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; font-size:10.5px;">3. Publish &amp; wait 1–2 weeks</div>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; font-size:10.5px;">4. Compare CTR/saves</div>
+        <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:8px 12px; font-size:10.5px;">5. Scale the winner</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 6 · Pin Design</div>
+  <div class="page-number">17</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 7 — PAGE 18 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-18">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">07</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 7</div><h2 class="page-title" style="margin:2px 0 0;">Build Your Organic Traffic Engine</h2></div>
+    </div>
+  </div>
+  <p class="lead">Pinterest rewards consistency and relevance more than sheer volume. A sustainable publishing rhythm compounds into a reliable traffic engine over time.</p>
+
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><svg><use href="#ic-calendar"/></svg>Publishing Consistency</div><p>Regular, predictable publishing helps Pinterest continue to trust and distribute your content.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-layers"/></svg>Fresh Creative</div><p>New designs for existing topics keep content feeling current without needing entirely new ideas.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-search"/></svg>Keyword Rotation</div><p>Rotate through your keyword clusters so boards and pins cover a topic comprehensively.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-chart"/></svg>Board Organization</div><p>Keep boards focused and organized so both users and the algorithm understand your content clearly.</p></div>
+  </div>
+
+  <div class="callout reality" style="margin-top:14px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-shield"/></svg><p><b>Quality over quantity:</b> Publishing many low-relevance pins will not outperform fewer, well-targeted, high-quality pins. Relevance and helpfulness matter more than raw volume.</p></div>
+
+  <div class="illustration" style="margin-top:auto;">
+    <div class="glow" style="width:180px;height:180px; top:-40px; right:-20px; background:var(--violet);"></div>
+    <div style="position:relative; display:flex; align-items:center; gap:16px;">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-gear"/></svg>
+      <div><div style="font-weight:800; font-size:13.5px;">Consistency Compounds</div><div style="font-size:11.5px; color:#c7c9ef; margin-top:3px;">A steady, sustainable rhythm outperforms sporadic bursts of activity.</div></div>
+    </div>
+  </div>
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 7 · Traffic Engine</div>
+  <div class="page-number">18</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 7 — PAGE 19 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-19">
+  <div class="kicker"><span class="dot"></span>CHAPTER 7 · CONTINUED</div>
+  <h2 class="page-title">Sample Weekly Publishing Schedule</h2>
+  <p class="lead">A simple, repeatable weekly rhythm makes content planning easier and keeps your boards diverse and relevant.</p>
+
+  <div class="week-grid">
+    <div class="week-day"><div class="d">Mon</div><div class="t">Educational Pin</div></div>
+    <div class="week-day"><div class="d">Tue</div><div class="t">Problem/Solution Pin</div></div>
+    <div class="week-day"><div class="d">Wed</div><div class="t">Product-Focused Pin</div></div>
+    <div class="week-day"><div class="d">Thu</div><div class="t">Tutorial Pin</div></div>
+    <div class="week-day"><div class="d">Fri</div><div class="t">List/Checklist Pin</div></div>
+    <div class="week-day"><div class="d">Sat</div><div class="t">Seasonal/Trending Pin</div></div>
+    <div class="week-day"><div class="d">Sun</div><div class="t">Best-Performer Variation</div></div>
+  </div>
+
+  <div class="callout info" style="margin-top:16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-bulb"/></svg><p>This schedule is a template, not a rule. Adjust frequency to what you can sustain consistently — a realistic, maintained schedule beats an ambitious one you abandon after two weeks.</p></div>
+
+  <div class="section-heading" style="margin-top:14px;"><svg><use href="#ic-chart"/></svg>Why This Mix Works</div>
+  <div class="grid-2">
+    <div class="card"><p>Educational and tutorial content builds trust and authority, earning saves and repeat visits.</p></div>
+    <div class="card"><p>Product-focused and list pins move warmer traffic closer to a buying decision.</p></div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 7 · Traffic Engine</div>
+  <div class="page-number">19</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 7 — PAGE 20 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-20">
+  <div class="kicker"><span class="dot"></span>CHAPTER 7 · CONTINUED</div>
+  <h2 class="page-title">Content Clusters &amp; Diversification</h2>
+
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><svg><use href="#ic-layers"/></svg>Content Clusters</div><p>Group pins around a shared subtopic (e.g. "Pinterest SEO") so they reinforce each other in search relevance.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-calendar"/></svg>Seasonal + Evergreen Mix</div><p>Balance timeless "evergreen" pins with timely seasonal content planned 30–45 days ahead.</p></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:10px;"><svg><use href="#ic-chart"/></svg>Pinterest Content Engine Diagram</div>
+  <div class="illustration">
+    <div class="glow" style="width:200px;height:200px; top:-40px; left:50%; background:var(--magenta);"></div>
+    <div style="position:relative; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+      <div style="text-align:center; flex:1; min-width:90px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-bulb"/></svg><div style="font-size:9.5px; margin-top:6px;">Keyword Cluster</div></div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+      <div style="text-align:center; flex:1; min-width:90px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-layers"/></svg><div style="font-size:9.5px; margin-top:6px;">Board + Pins</div></div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+      <div style="text-align:center; flex:1; min-width:90px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-calendar"/></svg><div style="font-size:9.5px; margin-top:6px;">Weekly Publishing</div></div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+      <div style="text-align:center; flex:1; min-width:90px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><use href="#ic-chart"/></svg><div style="font-size:9.5px; margin-top:6px;">Analytics Review</div></div>
+    </div>
+  </div>
+  <p class="lead">Diversifying across clusters, formats, and timing helps protect your traffic if one topic or trend slows down, while analytics reveal where to double down.</p>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 7 · Traffic Engine</div>
+  <div class="page-number">20</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 8 — PAGE 21 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-21">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">08</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 8</div><h2 class="page-title" style="margin:2px 0 0;">Turn Pinterest Traffic Into Affiliate Clicks</h2></div>
+    </div>
+  </div>
+  <p class="lead">A click is only valuable if it leads somewhere relevant. Understanding the path between your pin and the affiliate offer is key to conversion.</p>
+
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><svg><use href="#ic-link"/></svg>Direct Linking</div><p>Sending traffic straight to the affiliate offer — simplest, but offers less control and no audience-building opportunity.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-layers"/></svg>Landing / Bridge Pages</div><p>A page you control between the pin and the offer — useful for pre-selling, context, and building trust.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-star"/></svg>Pre-Selling</div><p>Briefly explain the benefit and set expectations before sending the click onward — increases relevance and conversion.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-check"/></svg>Matching Promises</div><p>Your pin's headline promise must match what the destination page actually delivers, or trust — and conversions — drop.</p></div>
+  </div>
+
+  <div class="callout warning" style="margin-top:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-shield"/></svg><p><b>Always disclose:</b> Clearly disclose affiliate relationships to your audience and follow each platform's and program's specific rules about linking and promotion.</p></div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 8 · Conversion</div>
+  <div class="page-number">21</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 8 — PAGE 22 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-22">
+  <div class="kicker"><span class="dot"></span>CHAPTER 8 · CONTINUED</div>
+  <h2 class="page-title">The Traffic Conversion Funnel</h2>
+
+  <div class="illustration">
+    <div class="glow" style="width:200px;height:200px; bottom:-40px; right:-20px; background:var(--cyan);"></div>
+    <div class="funnel" style="position:relative;">
+      <div class="funnel-step" style="background:#c7d2fe; width:100%;"><svg><use href="#ic-eye"/></svg>Pinterest Impression</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#b3c1fd; width:88%;"><svg><use href="#ic-cursor"/></svg>Pin Click</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#c4b5fd; width:74%;"><svg><use href="#ic-link"/></svg>Landing Page</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#e0abfc; width:58%;"><svg><use href="#ic-layers"/></svg>Affiliate Offer</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#f0abfc; width:42%;"><svg><use href="#ic-check"/></svg>Conversion</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#67e8f9; width:28%;"><svg><use href="#ic-dollar"/></svg>Commission</div>
+    </div>
+  </div>
+
+  <div class="section-heading"><svg><use href="#ic-chart"/></svg>Tracking What Matters</div>
+  <div class="grid-2">
+    <div class="card"><p>Use each platform's built-in analytics and any affiliate dashboard reporting to see which pins drive clicks and conversions.</p></div>
+    <div class="card"><p>Prioritize good user experience: fast-loading pages, clear layout, and honest, helpful content around your links.</p></div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 8 · Conversion</div>
+  <div class="page-number">22</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 9 — PAGE 23 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-23">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">09</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 9</div><h2 class="page-title" style="margin:2px 0 0;">Scale, Automate &amp; Optimize</h2></div>
+    </div>
+  </div>
+  <p class="lead">Once you have data, use it. Pinterest analytics reveal which pins, topics, and formats deserve more of your time and creative energy.</p>
+
+  <div class="section-heading"><svg><use href="#ic-chart"/></svg>Key Metrics to Watch</div>
+  <div class="grid-3">
+    <div class="card"><div class="card-title"><svg><use href="#ic-eye"/></svg>Impressions</div><p>How many times your pin was shown.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-cursor"/></svg>Outbound Clicks / CTR</div><p>How often impressions turn into clicks to your link.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-bookmark"/></svg>Saves</div><p>A strong relevance and long-term reach signal.</p></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:12px;"><svg><use href="#ic-refresh"/></svg>The Optimization Loop</div>
+  <div class="illustration">
+    <div class="glow" style="width:180px;height:180px; top:-30px; left:-30px; background:var(--violet);"></div>
+    <div style="position:relative; display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center;">
+      <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Publish</div>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+      <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Measure</div>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+      <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Analyze</div>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+      <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Improve</div>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+      <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Republish / Test</div>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9caf5" stroke-width="2"><use href="#ic-arrow-right"/></svg>
+      <div style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); padding:7px 10px; border-radius:10px; font-size:10px;">Scale</div>
+    </div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 9 · Scale &amp; Optimize</div>
+  <div class="page-number">23</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 9 — PAGE 24 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-24">
+  <div class="kicker"><span class="dot"></span>CHAPTER 9 · CONTINUED</div>
+  <h2 class="page-title">Repurposing, Batching &amp; Automation</h2>
+
+  <div class="grid-2">
+    <div class="card"><div class="card-title"><svg><use href="#ic-layers"/></svg>Content Repurposing</div><p>Turn one winning topic into multiple pin designs, an idea pin, and a short video variation.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-calendar"/></svg>Batch Creation</div><p>Design and write descriptions for a week or month of pins in focused sessions rather than daily.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-gear"/></svg>Scheduling Tools</div><p>Use a scheduler to queue pins in advance and maintain consistency without daily manual posting.</p></div>
+    <div class="card"><div class="card-title"><svg><use href="#ic-bulb"/></svg>AI-Assisted Creation</div><p>Use templates and AI tools to speed up design and copywriting — always review for quality and accuracy.</p></div>
+  </div>
+
+  <div class="callout warning" style="margin-top:14px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-flag"/></svg><p><b>Automation should support quality</b> — not create spam or repetitive low-value content. Every automated pin should still meet your quality bar.</p></div>
+
+  <div class="section-heading" style="margin-top:12px;"><svg><use href="#ic-target"/></svg>Scaling What Works</div>
+  <p class="lead">When a topic or design consistently outperforms others, create additional variations, expand the keyword cluster, and consider related affiliate offers for that same audience segment.</p>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 9 · Scale &amp; Optimize</div>
+  <div class="page-number">24</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 9 — PAGE 25 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-25">
+  <div class="kicker"><span class="dot"></span>CHAPTER 9 · CONTINUED</div>
+  <h2 class="page-title">Sample Performance Dashboard</h2>
+  <p class="page-subtitle">Illustrative example numbers only — not a promise of results.</p>
+
+  <div class="dashboard">
+    <div class="dash-grid">
+      <div class="dash-metric"><div class="k">Impressions</div><div class="v">184,200</div><div class="delta">▲ example</div></div>
+      <div class="dash-metric"><div class="k">Saves</div><div class="v">3,940</div><div class="delta">▲ example</div></div>
+      <div class="dash-metric"><div class="k">Outbound Clicks</div><div class="v">5,120</div><div class="delta">▲ example</div></div>
+      <div class="dash-metric"><div class="k">Outbound CTR</div><div class="v">2.8%</div><div class="delta">illustrative</div></div>
+      <div class="dash-metric"><div class="k">Conversions</div><div class="v">61</div><div class="delta">illustrative</div></div>
+      <div class="dash-metric"><div class="k">Conv. Rate</div><div class="v">1.2%</div><div class="delta">illustrative</div></div>
+      <div class="dash-metric"><div class="k">Est. Commission</div><div class="v">$915</div><div class="delta">illustrative</div></div>
+      <div class="dash-metric"><div class="k">Best Pin</div><div class="v" style="font-size:12px;">"7 Pinterest Mistakes"</div><div class="delta">top performer</div></div>
+    </div>
+  </div>
+
+  <div class="callout info" style="margin-top:14px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-shield"/></svg><p>All figures above are hypothetical, illustrative examples used to demonstrate how a dashboard might look — not real or guaranteed data.</p></div>
+
+  <div class="section-heading" style="margin-top:10px;"><svg><use href="#ic-star"/></svg>What to Do With This Data</div>
+  <div class="grid-2">
+    <div class="card"><p>Identify your best-performing pin and topic, then produce 3–5 new variations of it.</p></div>
+    <div class="card"><p>Pause or redesign consistently weak pins rather than letting them dilute your board's relevance.</p></div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 9 · Scale &amp; Optimize</div>
+  <div class="page-number">25</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 10 — PAGE 26 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-26">
+  <div class="chapter-head">
+    <div style="display:flex; gap:12px; align-items:center;">
+      <div class="chapter-chip">10</div>
+      <div><div class="kicker"><span class="dot"></span>CHAPTER 10</div><h2 class="page-title" style="margin:2px 0 0;">Your 90-Day Pinterest Growth Plan</h2></div>
+    </div>
+  </div>
+  <p class="lead">A focused 90-day plan turns everything in this book into a repeatable action sequence: build the foundation, drive traffic, then optimize and scale.</p>
+
+  <div class="section-heading"><svg><use href="#ic-flag"/></svg>Days 1–30: Foundation</div>
+  <div class="worksheet">
+    <ul class="checklist">
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal30" id="f1">Choose your niche and validate demand</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal30" id="f2">Define your audience and buyer intent angle</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal30" id="f3">Select 2–3 profitable affiliate offers</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal30" id="f4">Set up and optimize your Pinterest business profile</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal30" id="f5">Create 8–12 keyword-optimized boards</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal30" id="f6">Complete initial keyword research &amp; clustering</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal30" id="f7">Design and publish your first 15–20 pins</label></li>
+    </ul>
+    <div class="progress-track" style="margin-top:12px;"><div class="progress-fill" id="f-progress" style="width:0%;"></div></div>
+    <p class="small-note" style="margin-top:6px;" id="f-progress-label">0 of 7 complete</p>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 10 · 90-Day Plan</div>
+  <div class="page-number">26</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 10 — PAGE 27 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-27">
+  <div class="kicker"><span class="dot"></span>CHAPTER 10 · CONTINUED</div>
+  <h2 class="page-title">Days 31–90: Traffic, Optimization &amp; Scaling</h2>
+
+  <div class="section-heading"><svg><use href="#ic-chart"/></svg>Days 31–60: Traffic Roadmap</div>
+  <div class="roadmap">
+    <div class="road-step"><div class="t">Week 5–6 — Consistent Publishing</div><div class="d">Maintain your weekly schedule; keep boards active and organized.</div></div>
+    <div class="road-step"><div class="t">Week 6–7 — Fresh Creative &amp; Keyword Expansion</div><div class="d">Add new pin designs to existing topics and expand into related keyword clusters.</div></div>
+    <div class="road-step"><div class="t">Week 7–8 — Content Clusters</div><div class="d">Group related pins/boards so topics reinforce each other in search.</div></div>
+    <div class="road-step"><div class="t">Week 8–9 — Analytics Check-In</div><div class="d">Review impressions, saves, and CTR; note early winners and weak spots.</div></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:14px;"><svg><use href="#ic-refresh"/></svg>Days 61–90: Optimization &amp; Scaling Checklist</div>
+  <div class="worksheet">
+    <ul class="checklist">
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal90" id="o1">Identify winning pins &amp; topics from analytics</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal90" id="o2">Create 3–5 variations of top performers</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal90" id="o3">Improve CTR with new headlines/visuals</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal90" id="o4">Improve landing pages for better conversion</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal90" id="o5">Expand or refine affiliate offer selection</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal90" id="o6">Automate repetitive tasks (batching, scheduling)</label></li>
+      <li><label class="check-row"><input type="checkbox" class="persist-check goal90" id="o7">Document a repeatable content system</label></li>
+    </ul>
+    <div class="progress-track" style="margin-top:12px;"><div class="progress-fill" id="o-progress" style="width:0%;"></div></div>
+    <p class="small-note" style="margin-top:6px;" id="o-progress-label">0 of 7 complete</p>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 10 · 90-Day Plan</div>
+  <div class="page-number">27</div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CHAPTER 10 — PAGE 28 -->
+<!-- ================================================================= -->
+<section class="ebook-page" id="page-28">
+  <div class="kicker"><span class="dot"></span>CHAPTER 10 · YOUR $1K TARGET MODEL</div>
+  <h2 class="page-title">The $1K/Month Target Model</h2>
+  <p class="lead">This calculator shows how Traffic × CTR × Conversion Rate × Commission can combine toward a monthly target. Enter your own hypothetical numbers below.</p>
+
+  <div class="worksheet">
+    <div class="field-row">
+      <div class="field"><label>Monthly Pinterest Impressions</label><input type="number" id="calcImpressions" value="150000"></div>
+      <div class="field"><label>Outbound CTR (%)</label><input type="number" id="calcCTR" value="2"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Conversion Rate (%)</label><input type="number" id="calcConv" value="1.5"></div>
+      <div class="field"><label>Average Commission ($)</label><input type="number" id="calcCommission" value="20"></div>
+    </div>
+    <button class="nav-btn" style="background:var(--violet); justify-content:center; width:100%; padding:9px;" onclick="calcTarget()">Calculate Estimate</button>
+    <div class="worksheet-result">
+      <div class="result-chip"><div class="v" id="outClicks">3,000</div><div class="k">Outbound Clicks</div></div>
+      <div class="result-chip"><div class="v" id="outConv">45</div><div class="k">Conversions</div></div>
+      <div class="result-chip"><div class="v" id="outCommission">$900</div><div class="k">Est. Commission</div></div>
+    </div>
+    <div class="callout warning" style="margin-top:10px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#ic-shield"/></svg><p><b>This is an example calculation, not a guarantee of earnings. Actual results vary</b> based on traffic quality, content quality, offer quality, conversion rate, click-through rate, consistency, competition, audience fit, and execution.</p></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="page-title" style="font-size:22px; margin-top:6px;">Your Pinterest Business Starts With One Pin.</h2>
+  <div style="display:flex; gap:6px; flex-wrap:wrap; margin:8px 0 12px;">
+    <span class="badge">Choose</span><span class="badge magenta">Optimize</span><span class="badge cyan">Create</span><span class="badge">Publish</span><span class="badge magenta">Measure</span><span class="badge cyan">Improve</span><span class="badge">Scale</span>
+  </div>
+
+  <div class="illustration">
+    <div class="glow" style="width:220px;height:220px; top:-50px; right:-40px; background:var(--magenta);"></div>
+    <div class="glow" style="width:160px;height:160px; bottom:-30px; left:-20px; background:var(--cyan);"></div>
+    <div style="position:relative;">
+      <div style="font-weight:800; font-size:13px; margin-bottom:10px;">System Recap</div>
+      <p style="font-size:11.5px; color:#d6d7f7; line-height:1.65;">Choose a niche with real demand → build a keyword-optimized Pinterest profile → select quality affiliate offers → design click-worthy pins → publish consistently → guide clicks through an honest, disclosed funnel → measure your analytics → improve what underperforms → scale what works. Repeat this loop, and your Pinterest affiliate business compounds over time.</p>
+      <div style="margin-top:12px; font-size:11px; color:#9fa2d6;">Author: <b style="color:#fff;">GrowthVault</b></div>
+    </div>
+  </div>
+
+  <div class="page-footer-line"></div>
+  <div class="page-number-left">Chapter 10 · The $1K Model</div>
+  <div class="page-number">28</div>
+</section>
+
+<script>
+/* =========================================================
+   NAVIGATION
+========================================================= */
+const TOTAL_PAGES = 28;
+const pages = Array.from({length:TOTAL_PAGES}, (_,i)=>document.getElementById('page-'+(i+1)));
+let currentPage = 1;
+
+const chapterMeta = [
+  {id:'page-1', label:'Cover'},
+  {id:'page-2', label:'Table of Contents'},
+  {id:'page-4', label:'Ch.1 — The Pinterest Affiliate Opportunity'},
+  {id:'page-6', label:'Ch.2 — Build Your Pinterest Business Foundation'},
+  {id:'page-8', label:'Ch.3 — Find Profitable Affiliate Offers'},
+  {id:'page-10', label:'Ch.4 — Pinterest Keyword Research'},
+  {id:'page-13', label:'Ch.5 — Create a High-Converting Profile'},
+  {id:'page-15', label:'Ch.6 — Design Click-Worthy Pins'},
+  {id:'page-18', label:'Ch.7 — Build Your Organic Traffic Engine'},
+  {id:'page-21', label:'Ch.8 — Turn Traffic Into Affiliate Clicks'},
+  {id:'page-23', label:'Ch.9 — Scale, Automate & Optimize'},
+  {id:'page-26', label:'Ch.10 — Your 90-Day Growth Plan'},
+];
+
+function buildTocModal(){
+  const list = document.getElementById('tocList');
+  list.innerHTML = chapterMeta.map(c=>{
+    const num = c.id.replace('page-','');
+    return `<li><a class="toc-item" href="#${c.id}" onclick="closeToc()"><span class="toc-num">${num}</span><span class="toc-info"><div class="t">${c.label}</div></span><span class="toc-page">${num}</span></a></li>`;
+  }).join('');
+}
+buildTocModal();
+
+document.querySelectorAll('[data-goto]').forEach(el=>{
+  el.style.cursor='pointer';
+  el.addEventListener('click', ()=>{
+    const target = document.getElementById(el.getAttribute('data-goto'));
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+function scrollToPage(n){
+  n = Math.max(1, Math.min(TOTAL_PAGES, n));
+  pages[n-1].scrollIntoView({behavior:'smooth', block:'start'});
+}
+document.getElementById('btnPrev').addEventListener('click', ()=>scrollToPage(currentPage-1));
+document.getElementById('btnNext').addEventListener('click', ()=>scrollToPage(currentPage+1));
+document.getElementById('btnPrint').addEventListener('click', ()=>window.print());
+
+const tocOverlay = document.getElementById('tocOverlay');
+document.getElementById('btnToc').addEventListener('click', ()=>tocOverlay.classList.add('open'));
+document.getElementById('tocClose').addEventListener('click', ()=>tocOverlay.classList.remove('open'));
+tocOverlay.addEventListener('click', (e)=>{ if(e.target===tocOverlay) tocOverlay.classList.remove('open'); });
+function closeToc(){ tocOverlay.classList.remove('open'); }
+
+/* progress bar + current page indicator via scroll position */
+function updateProgress(){
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight>0 ? Math.min(100,(scrollTop/docHeight)*100) : 0;
+  document.getElementById('navProgress').style.width = pct+'%';
+
+  // determine current page: whichever section top is closest to viewport top
+  let closest = 1; let closestDist = Infinity;
+  pages.forEach((p,i)=>{
+    const rect = p.getBoundingClientRect();
+    const dist = Math.abs(rect.top - 80);
+    if(rect.top < window.innerHeight*0.6 && dist < closestDist){ closestDist = dist; closest = i+1; }
+  });
+  currentPage = closest;
+  document.getElementById('pageIndicator').textContent = 'Page '+currentPage+' / '+TOTAL_PAGES;
+  document.getElementById('btnPrev').disabled = currentPage<=1;
+  document.getElementById('btnNext').disabled = currentPage>=TOTAL_PAGES;
+
+  const fab = document.getElementById('fabTop');
+  if(scrollTop>600) fab.classList.add('show'); else fab.classList.remove('show');
+}
+window.addEventListener('scroll', updateProgress);
+window.addEventListener('resize', updateProgress);
+updateProgress();
+
+document.getElementById('fabTop').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+/* =========================================================
+   WORKSHEETS / CALCULATORS
+========================================================= */
+function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+
+function calcGoal(){
+  const target = parseFloat(document.getElementById('goalTarget').value) || 0;
+  const commission = parseFloat(document.getElementById('goalCommission').value) || 1;
+  const conv = parseFloat(document.getElementById('goalConversion').value) || 1;
+  const sales = commission>0 ? target/commission : 0;
+  const clicks = conv>0 ? sales/(conv/100) : 0;
+  document.getElementById('goalSales').textContent = fmt(sales);
+  document.getElementById('goalClicks').textContent = fmt(clicks);
+  document.getElementById('goalPerDay').textContent = fmt(clicks/30);
+}
+calcGoal();
+
+function calcTarget(){
+  const imp = parseFloat(document.getElementById('calcImpressions').value) || 0;
+  const ctr = parseFloat(document.getElementById('calcCTR').value) || 0;
+  const conv = parseFloat(document.getElementById('calcConv').value) || 0;
+  const commission = parseFloat(document.getElementById('calcCommission').value) || 0;
+  const clicks = imp * (ctr/100);
+  const conversions = clicks * (conv/100);
+  const totalCommission = conversions * commission;
+  document.getElementById('outClicks').textContent = fmt(clicks);
+  document.getElementById('outConv').textContent = fmt(conversions);
+  document.getElementById('outCommission').textContent = '$'+fmt(totalCommission);
+}
+calcTarget();
+
+/* Niche Scorecard */
+function updateScore(el, id){
+  document.getElementById(id).textContent = el.value;
+  const demand = +document.getElementById('sDemand').textContent;
+  const intent = +document.getElementById('sIntent').textContent;
+  const comp = +document.getElementById('sComp').textContent;
+  const content = +document.getElementById('sContent').textContent;
+  const affiliate = +document.getElementById('sAffiliate').textContent;
+  const total = demand+intent+comp+content+affiliate;
+  document.getElementById('scoreTotal').textContent = total;
+  let label = 'Needs More Research';
+  if(total>=70) label = 'Excellent Niche Potential';
+  else if(total>=55) label = 'Good Niche Potential';
+  else if(total>=35) label = 'Moderate — Refine Further';
+  document.getElementById('scoreLabel').textContent = label;
+}
+updateScore({value:7},'sDemand');
+
+/* Checklist progress + localStorage persistence */
+function setupProgressGroup(groupClass, fillId, labelId){
+  const boxes = Array.from(document.querySelectorAll('.'+groupClass));
+  if(!boxes.length) return;
+  function refresh(){
+    const checked = boxes.filter(b=>b.checked).length;
+    const pct = (checked/boxes.length)*100;
+    const fill = document.getElementById(fillId);
+    if(fill) fill.style.width = pct+'%';
+    const lbl = document.getElementById(labelId);
+    if(lbl) lbl.textContent = checked+' of '+boxes.length+' complete';
+  }
+  boxes.forEach(b=>{
+    const key = 'pin-ebook-'+b.id;
+    const saved = localStorage.getItem(key);
+    if(saved==='1') b.checked = true;
+    b.addEventListener('change', ()=>{
+      localStorage.setItem(key, b.checked ? '1':'0');
+      refresh();
+    });
+  });
+  refresh();
+}
+setupProgressGroup('persist-check','c-progress','c-progress-label'); // fallback global, overridden below per group
+setupProgressGroup('goal30','f-progress','f-progress-label');
+setupProgressGroup('goal90','o-progress','o-progress-label');
+
+// Re-run specifically for the offer checklist (ids c1-c8) since it shares class persist-check with profile/others
+(function(){
+  const ids = ['c1','c2','c3','c4','c5','c6','c7','c8'];
+  const boxes = ids.map(id=>document.getElementById(id)).filter(Boolean);
+  function refresh(){
+    const checked = boxes.filter(b=>b.checked).length;
+    document.getElementById('c-progress').style.width = (checked/boxes.length*100)+'%';
+    document.getElementById('c-progress-label').textContent = checked+' of '+boxes.length+' checked';
+  }
+  boxes.forEach(b=>b.addEventListener('change', refresh));
+  refresh();
+})();
+
+/* Generic persistence for any other .persist-check not already covered (profile checklist p1-p6) */
+document.querySelectorAll('.persist-check').forEach(b=>{
+  const key = 'pin-ebook-'+b.id;
+  const saved = localStorage.getItem(key);
+  if(saved==='1') b.checked = true;
+  if(!b.dataset.bound){
+    b.addEventListener('change', ()=>localStorage.setItem(key, b.checked?'1':'0'));
+    b.dataset.bound = '1';
+  }
+});
+
+/* Keyword worksheet persistence */
+document.querySelectorAll('.kw-input').forEach(inp=>{
+  const key = 'pin-ebook-kw-'+inp.dataset.row+'-'+inp.dataset.col;
+  const saved = localStorage.getItem(key);
+  if(saved) inp.value = saved;
+  inp.addEventListener('input', ()=>localStorage.setItem(key, inp.value));
+});
+
+/* Keyboard navigation */
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='ArrowRight') scrollToPage(currentPage+1);
+  if(e.key==='ArrowLeft') scrollToPage(currentPage-1);
+});
+</script>
+</body>
+</html>
